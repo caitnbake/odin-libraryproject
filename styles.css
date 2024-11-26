@@ -47,7 +47,7 @@ body {
     text-align: center;
   }
 
-  .sidebar > h3 {
+  .header > h3 {
     color: var(--color4);
     text-decoration: underline;
     text-decoration-color: var(--color2);
@@ -109,7 +109,7 @@ h2 {
 }
   
 h3 {
-  font-size: clamp(2.2rem, 3vw + 1rem, 4rem);
+  font-size: clamp(3.5rem, 3vw + 1rem, 4rem);
 }
 
 @media (max-width: 600px) {
@@ -125,8 +125,21 @@ h3 {
   .sidebar {
       position: relative;
       height: auto;
-      padding: 20px;
       border-right: none;
-      border-bottom: 1px solid var(--mainicons);
+      border-bottom: 1px solid var(--color3a);
+      padding: 30px;
+  }
+
+  .stats {
+    font-size: 1.8rem;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
   }
 }

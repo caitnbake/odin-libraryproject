@@ -15,6 +15,21 @@ function addBookToLibrary(title, author, numberOfPages, status) {
 let container = document.querySelector(".container");
 
 function addBooksToPage() {
+    const totalBooks = document.querySelector(".total");
+    totalBooks.innerText = `Total: ${myLibrary.length}`;
+
+    const readBooks = document.querySelector(".read");
+    const totRead = myLibrary.filter(book => book.status === "Finished");
+    readBooks.innerText = `Read: ${totRead.length}`;
+
+    const inProgress = document.querySelector(".inprogress");
+    const totInProgress = myLibrary.filter(book => book.status === "Started");
+    inProgress.innerText = `In progress: ${totInProgress.length}`;
+
+    const notStarted = document.querySelector(".notstarted");
+    const totNotStarted = myLibrary.filter(book => book.status === "Not started");
+    notStarted.innerText = `Not started: ${totNotStarted.length}`;
+
     for (book of myLibrary) {
         const newCard = document.createElement("div");
         newCard.classList.add("card");
