@@ -1,0 +1,97 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+  
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color2: #fff;
+  --color3: rgba(255, 255, 255, 3%);
+  --color4: rgba(255, 255, 97, 0.53);
+  --color5: #052428;
+}
+  
+html {
+  font-size: 10px;
+}
+  
+body {
+  font-size: 2rem;
+  letter-spacing: 0.05rem;
+  color: var(--color1);
+  -webkit-font-smoothing: antialiased;
+  overflow-y: overlay;
+  background-color: var(--color5);
+  font-family: Rajdhani, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.strong {
+    font-weight: bold;
+    color: var(--color2);
+}
+
+.container {
+  width: min(90%, 100vw - 2rem);
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 35px;
+}
+
+.card {
+    background-color: var(--color3);
+    padding: 40px 50px 50px;
+    border-radius: 15px;
+    color: var(--color4);
+}
+
+.bookTitle {
+    color: var(--color2);
+    line-height: 1em;
+    text-decoration: underline;
+    text-decoration-color: var(--color4);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}
+
+.bookAuthor {
+    margin-top: 12px;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+input {
+  font-size: max(16px, 1rem);
+}
+  
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+  
+p, ul, ol{
+  font-size: 1.8rem;
+  text-wrap: pretty;
+  line-height: calc(1ex / 0.32);
+  width: 70ch;
+  max-width: 100%;
+}
+
+h1 {
+  font-size: clamp(3rem, 4vw + 1rem, 6rem);
+}
+  
+h2 {
+  font-size: clamp(2.5rem, 3.5vw + 1rem, 5rem);
+}
+  
+h3 {
+  font-size: clamp(2.2rem, 3vw + 1rem, 3rem);
+}

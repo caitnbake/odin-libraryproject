@@ -1,17 +1,14 @@
 const myLibrary = [];
 
-function Book(title, author, numberOfPages, haveRead) {
+function Book(title, author, numberOfPages, status) {
     this.title = title;
     this.author = author;
     this.numberOfPages = numberOfPages;
-    this.haveRead = haveRead;
-    this.info = function() {
-        return `${title} by ${author}, ${numberOfPages} pages, ${haveRead === "yes" ? "read" : "not read yet"}`;
-    }
+    this.status = status;
 }
 
-function addBookToLibrary(title, author, numberOfPages, haveRead) {
-    const newBook = new Book(title, author, numberOfPages, haveRead);
+function addBookToLibrary(title, author, numberOfPages, status) {
+    const newBook = new Book(title, author, numberOfPages, status);
     myLibrary.push(newBook);
 }
 
@@ -24,14 +21,14 @@ function addBooksToPage() {
         const bookTitle = document.createElement("h2");
         bookTitle.classList.add("bookTitle");
         bookTitle.innerText = book.title;
-        const bookAuthor = document.createElement("h3");
+        const bookAuthor = document.createElement("p");
         bookAuthor.classList.add("bookAuthor");
-        bookAuthor.innerText = book.author;
+        bookAuthor.innerHTML = `<span class="strong white">Author:</span> ${book.author}`;
         const bookPages = document.createElement("p");
         bookPages.classList.add("numberOfPages");
-        bookPages.innerText = `Number of pages: ${book.numberOfPages}`;
-        const haveRead = document.createElement("checkbox");
-        haveRead.innerText = `Read: ${book.haveRead}`;
+        bookPages.innerHTML = `<span class="strong white">Number of pages:</span> ${book.numberOfPages}`;
+        const haveRead = document.createElement("p");
+        haveRead.innerHTML = `<span class="strong white">Status:</span> ${book.status}`;
         newCard.appendChild(bookTitle);
         newCard.appendChild(bookAuthor);
         newCard.appendChild(bookPages);
@@ -40,7 +37,10 @@ function addBooksToPage() {
     }
 }
 
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkein', 295, 'no');
-addBookToLibrary('Made Up Book', 'Fake Author', 893, 'yes');
-addBookToLibrary('Fake Book 2', 'Cait Baker', 86, 'yes');
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkein', 295, 'Started');
+addBookToLibrary('Made Up Book', 'Fake Author', 893, 'Not started');
+addBookToLibrary('Fake Book 2', 'Cait Baker', 86, 'Finished');
+addBookToLibrary('Long Book Title That Takes', 'J.R.R. Tolkein', 295, 'Not started');
+addBookToLibrary('Made Up Book', 'Fake Author', 893, 'Started');
+addBookToLibrary('Fake Book 2', 'Cait Baker', 86, 'Not started');
 addBooksToPage();
