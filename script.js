@@ -2,18 +2,31 @@ const myLibrary = [];
 
 let selector = {
     container: document.querySelector(".container"),
-    newBtn: document.querySelector(".addBook"),
+    openModal: document.querySelector(".addBook"),
     stats: document.querySelector(".stats"),
     popup: document.querySelector(".popup"),
     cancelBtn: document.querySelector(".cancel"),
+    addBookBtn: document.querySelector(".confirm"),
+    popupForm: document.querySelector(".popupForm"),
 }
 
-selector.newBtn.addEventListener("click", () => {
+selector.openModal.addEventListener("click", () => {
     selector.popup.showModal();
+    selector.popupForm.reset();
 });
 
 selector.cancelBtn.addEventListener("click", () => {
     selector.popup.close();
+});
+
+selector.addBookBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    selector.popup.close();
+    let newTitle = document.querySelector("#title").value;
+    let newAuthor = document.querySelector("#author").value;
+    let newPages = document.querySelector("#pages").value;
+    let newStatus = document.querySelector('input[name="status"]:checked').value;
+    addBookToLibrary(newTitle, newAuthor, newPages, newStatus);
 });
 
 function Book(title, author, numberOfPages, status) {
