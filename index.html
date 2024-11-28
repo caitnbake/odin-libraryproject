@@ -10,6 +10,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Rajdhani:wght@300;400;500;600;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <dialog class="popup">
+        <h2>Add to Your Shelfie</h2>
+        <form>
+            <label for="title">Title: <input type="text" maxlength="200" id="title"></label><br>
+            <label for="author">Author: <input type="text" maxlength="200" id="author"></label><br>
+            <label for="pages">Number of pages: <input type="number" max="10000" id="pages"></label>
+            <fieldset>
+                <legend>Status:</legend>
+                <input type="radio" checked name="status" id="notStarted" value="Not started"><label for="notStarted">Not started</label>
+                <input type="radio" name="status" id="started" value="Started"><label for="started">Started</label>
+                <input type="radio" name="status" id="finished" value="Finished"><label for="finished">Finished</label>
+            </fieldset>
+            <button class="confirm">Add Book</button>
+            <button formmethod="dialog" class="cancel">Cancel</button>
+        </form>
+    </dialog>
     <div class="sidebar">
         <div class="header">
             <div class="logo">
@@ -19,10 +35,6 @@
             <button class="addBook">+ New Book</button>
         </div>
         <div class="stats">
-            <p class="stat read">Stat 2</p>
-            <p class="stat inprogress">Stat 3</p>
-            <p class="stat notstarted">Stat 4</p>
-            <p class="stat total">Stat 1</p>
         </div>
     </div>
     <div class="container"></div>

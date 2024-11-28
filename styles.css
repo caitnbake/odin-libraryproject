@@ -11,7 +11,7 @@
   --color2: #fff;
   --color3: rgba(255, 255, 255, 4%);
   --color3a: rgba(255, 255, 255, 11%);
-  --color4: rgba(223, 250, 200, 0.93);
+  --color4: rgba(223, 250, 200, 1);
   --color5: #052822;
 }
   
@@ -110,21 +110,41 @@ p {
   margin-top: 12px;
 }
 
-.addBook {
-  background: linear-gradient(var(--color3), var(--color3a));
-  border: 1px solid var(--color3a);
-  color: var(--color2);
+button {
   padding: 12px 20px 8px;
   text-transform: uppercase;
-  font-weight: 800;
   border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.addBook, .confirm {
+  background: linear-gradient(var(--color3), var(--color3a));
+  border: 1px solid var(--color3a);
+  font-weight: 800;
+  color: var(--color2);
   margin: 0px 0 25px;
 }
 
-.addBook:hover {
-  cursor: pointer;
+.addBook:hover, .confirm:hover {
   background: var(--color3a);
-  transform: scale(1.02);
+}
+
+.confirm {
+  width: 45%;
+  margin: 0;
+}
+
+.cancel {
+  background: var(--color5);
+  font-weight: 800;
+  color: var(--color2);
+  border: 1px solid var(--color3a);
+  width: 45%;
+  margin-left: 5px;
 }
 
 .stats {
@@ -137,6 +157,66 @@ input, button, textarea, select {
 
 input {
   font-size: max(16px, 1rem);
+  outline: none;
+}
+
+#author, #title, #pages {
+  margin-bottom: 25px;
+  width: 75%;
+  padding: 3px 5px;
+  margin-left: 8px;
+  border: 1px solid var(--color3);
+  background: var(--color3);
+  font-weight: 500;
+  color: var(--color2);
+}
+
+#pages {
+  width: 80px;
+}
+
+#author:focus, #title:focus, #pages:focus {
+  border: 1px solid var(--color3a);
+}
+
+dialog > h2 {
+  padding-bottom: 15px;
+  font-size: 4.2rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+dialog {
+  background: var(--color5);
+  width: minmax(400px, 90vw);
+  max-width: 90vw;
+  margin: auto;
+  padding: 45px 50px;
+  border-radius: 5px;
+  color: var(--color2);
+  border: none;
+}
+
+fieldset {
+  border: none;
+  padding-bottom: 25px;
+}
+
+fieldset > label {
+  font-weight: 500;
+  padding-left: 5px;
+  padding-right: 20px;
+}
+
+legend {
+  font-weight: bold;
+}
+
+::backdrop {
+  background-image: linear-gradient(black, black);
+  opacity: 0.5;
 }
 
 h1 {
@@ -174,13 +254,18 @@ h3 {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    margin-top: 5px;
+    margin-top: 15px;
     width: 100%;
   }
 
   .header {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     width: 100%;
+  }
+
+  .addBook {
+    margin: 0;
   }
 }
