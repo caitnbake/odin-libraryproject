@@ -260,7 +260,7 @@ function updateStats() {
 
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkein', 295, 'Finished');
 addBookToLibrary('Think Like a Programmer', 'V. Anton Spraul', 256, 'Started');
-addBookToLibrary('The Things We Cannot Say', 'Kelly Rimmer', 432, 'Not started');
-addBookToLibrary('Home Front', 'ristin Hannah', 400, 'Not started');
-addBookToLibrary('How to Stop Time', 'Matt Haig', 336, 'Finished');
 addBookToLibrary('I was Anastasia', 'Ariel Lawhon', 352, 'Not started');
+addBookToLibrary('Home Front', 'ristin Hannah', 400, 'Not started');
+addBookToLibrary('The Things We Cannot Say', 'Kelly Rimmer', 432, 'Not started');
+addBookToLibrary('How to Stop Time', 'Matt Haig', 336, 'Finished');
