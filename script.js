@@ -258,9 +258,9 @@ function updateStats() {
     <p><span class="strong">Total:</span> ${myLibrary.length}</p>`;
 }
 
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkein', 295, 'Started');
-addBookToLibrary('Made Up Book', 'Fake Author', 893, 'Not started');
-addBookToLibrary('Fake Book 2', 'Cait Baker', 86, 'Finished');
-addBookToLibrary('Long Book Title That Takes', 'J.R.R. Tolkein', 295, 'Not started');
-addBookToLibrary('Made Up Book', 'Fake Author', 893, 'Started');
-addBookToLibrary('Fake Book 2', 'Cait Baker', 86, 'Not started');
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkein', 295, 'Finished');
+addBookToLibrary('Think Like a Programmer', 'V. Anton Spraul', 256, 'Started');
+addBookToLibrary('The Things We Cannot Say', 'Kelly Rimmer', 432, 'Not started');
+addBookToLibrary('Home Front', 'ristin Hannah', 400, 'Not started');
+addBookToLibrary('How to Stop Time', 'Matt Haig', 336, 'Finished');
+addBookToLibrary('I was Anastasia', 'Ariel Lawhon', 352, 'Not started');
