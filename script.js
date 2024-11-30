@@ -38,6 +38,7 @@ function Book(title, author, numberOfPages, status) {
     this.status = status;
     this.isNew = true;
     this.idNumber = counter++;
+    this.statusChange - false;
 }
 
 function addBookToLibrary(title, author, numberOfPages, status) {
@@ -56,26 +57,50 @@ function addBooksToPage() {
                 bookPages: document.createElement("p"),
                 haveRead: document.createElement("p"),
                 deleteBtn: document.createElement("button"),
+                inProgBtn: document.createElement("button"),
+                finishedBtn: document.createElement("button"),
+                notStartedBtn: document.createElement("button"),
             }
 
             newElement.card.classList.add("card");
             newElement.bookTitle.classList.add("bookTitle");
             newElement.bookAuthor.classList.add("bookAuthor");
             newElement.deleteBtn.classList.add("delete");
+            newElement.inProgBtn.classList.add("inProgBtn");
+            newElement.finishedBtn.classList.add("finishedBtn");
+            newElement.notStartedBtn.classList.add("notStartedBtn");
+
+            newElement.inProgBtn.id = book.idNumber;
+            newElement.finishedBtn.id = book.idNumber;
+            newElement.notStartedBtn.id = book.idNumber;
             newElement.deleteBtn.id = book.idNumber;
 
             newElement.bookTitle.innerText = book.title;
             newElement.bookAuthor.innerHTML = `<span class="strong white">Author:</span> ${book.author}`;
             newElement.bookPages.innerHTML = `<span class="strong white">Number of pages:</span> ${book.numberOfPages}`;
-            newElement.haveRead.innerHTML = `<span class="strong white">Status:</span> ${book.status}`;
-            newElement.deleteBtn.innerText = "Delete";
+            newElement.haveRead.innerHTML = `<span class="strong white">Status:</span> ${book.status}<p class="strong white padtop">Change to:</p>`;
+            newElement.deleteBtn.innerText = "Delete?";
+            newElement.inProgBtn.innerText = "In progress";
+            newElement.notStartedBtn.innerText = "Not Started";
+            newElement.finishedBtn.innerText = "Finished";
 
             newElement.card.appendChild(newElement.bookTitle);
             newElement.card.appendChild(newElement.bookAuthor);
             newElement.card.appendChild(newElement.bookPages);
             newElement.card.appendChild(newElement.haveRead);
+            if (book.status === "Not started") {
+                newElement.card.appendChild(newElement.inProgBtn);
+                newElement.card.appendChild(newElement.finishedBtn);
+            } else if (book.status === "Started") {
+                newElement.card.appendChild(newElement.notStartedBtn);
+                newElement.card.appendChild(newElement.finishedBtn);
+            } else {
+                newElement.card.appendChild(newElement.notStartedBtn);
+                newElement.card.appendChild(newElement.inProgBtn);
+            }
             newElement.card.appendChild(newElement.deleteBtn);
             selector.container.prepend(newElement.card);
+
             book.isNew = false;
 
             newElement.deleteBtn.addEventListener("click", (event) => {
@@ -84,6 +109,8 @@ function addBooksToPage() {
                 event.target.closest('div.card').remove();
                 updateStats();
             });
+        } else if (book.statusChange === true) {
+            
         }
     }
     updateStats();
