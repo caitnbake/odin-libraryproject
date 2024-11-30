@@ -121,7 +121,7 @@ button:hover {
   transform: scale(1.02);
 }
 
-.addBook, .confirm {
+.addBook, .confirm, .delete {
   background: linear-gradient(var(--color3), var(--color3a));
   border: 1px solid var(--color3a);
   font-weight: 800;
@@ -129,8 +129,13 @@ button:hover {
   margin: 0px 0 25px;
 }
 
-.addBook:hover, .confirm:hover {
+.addBook:hover, .confirm:hover, .delete:hover {
   background: var(--color3a);
+}
+
+.delete {
+  margin: 0;
+  margin-top: 15px;
 }
 
 .confirm {

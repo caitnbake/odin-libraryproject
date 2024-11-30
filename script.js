@@ -1,4 +1,5 @@
 const myLibrary = [];
+let counter = 0;
 
 let selector = {
     container: document.querySelector(".container"),
@@ -8,6 +9,7 @@ let selector = {
     cancelBtn: document.querySelector(".cancel"),
     addBookBtn: document.querySelector(".confirm"),
     popupForm: document.querySelector(".popupForm"),
+    deleteBtn: document.querySelector(".delete"),
 }
 
 selector.openModal.addEventListener("click", () => {
@@ -32,9 +34,10 @@ selector.addBookBtn.addEventListener("click", (event) => {
 function Book(title, author, numberOfPages, status) {
     this.title = title;
     this.author = author;
-    this.numberOfPages = numberOfPages;
+    this.numberOfPages = +numberOfPages;
     this.status = status;
     this.isNew = true;
+    this.idNumber = counter++;
 }
 
 function addBookToLibrary(title, author, numberOfPages, status) {
@@ -52,23 +55,35 @@ function addBooksToPage() {
                 bookAuthor: document.createElement("p"),
                 bookPages: document.createElement("p"),
                 haveRead: document.createElement("p"),
+                deleteBtn: document.createElement("button"),
             }
 
             newElement.card.classList.add("card");
             newElement.bookTitle.classList.add("bookTitle");
             newElement.bookAuthor.classList.add("bookAuthor");
+            newElement.deleteBtn.classList.add("delete");
+            newElement.deleteBtn.id = book.idNumber;
 
             newElement.bookTitle.innerText = book.title;
             newElement.bookAuthor.innerHTML = `<span class="strong white">Author:</span> ${book.author}`;
             newElement.bookPages.innerHTML = `<span class="strong white">Number of pages:</span> ${book.numberOfPages}`;
             newElement.haveRead.innerHTML = `<span class="strong white">Status:</span> ${book.status}`;
+            newElement.deleteBtn.innerText = "Delete";
 
             newElement.card.appendChild(newElement.bookTitle);
             newElement.card.appendChild(newElement.bookAuthor);
             newElement.card.appendChild(newElement.bookPages);
             newElement.card.appendChild(newElement.haveRead);
-            selector.container.appendChild(newElement.card);
+            newElement.card.appendChild(newElement.deleteBtn);
+            selector.container.prepend(newElement.card);
             book.isNew = false;
+
+            newElement.deleteBtn.addEventListener("click", (event) => {
+                const index = myLibrary.findIndex(book => book.idNumber == event.target.id);
+                myLibrary.splice(index, 1);
+                event.target.closest('div.card').remove();
+                updateStats();
+            });
         }
     }
     updateStats();
