@@ -38,7 +38,7 @@ function Book(title, author, numberOfPages, status) {
     this.status = status;
     this.isNew = true;
     this.idNumber = counter++;
-    this.statusChange - false;
+    this.statusChange = false;
 }
 
 function addBookToLibrary(title, author, numberOfPages, status) {
@@ -103,16 +103,145 @@ function addBooksToPage() {
 
             book.isNew = false;
 
-            newElement.deleteBtn.addEventListener("click", (event) => {
-                const index = myLibrary.findIndex(book => book.idNumber == event.target.id);
-                myLibrary.splice(index, 1);
-                event.target.closest('div.card').remove();
-                updateStats();
-            });
-        } else if (book.statusChange === true) {
-            
+            newElement.deleteBtn.addEventListener("click", (event) => deleteBtnListener(event));
+            newElement.inProgBtn.addEventListener("click", (event) => inProgListener(event));
+            newElement.finishedBtn.addEventListener("click", (event) => finishedListener(event));
+            newElement.notStartedBtn.addEventListener("click", (event) => notStartedListener(event));
         }
     }
+    updateStats();
+}
+
+function deleteBtnListener(event) {
+    const index = myLibrary.findIndex(book => book.idNumber == event.target.id);
+    myLibrary.splice(index, 1);
+    event.target.closest('div.card').remove();
+    updateStats();
+}
+
+function notStartedListener(event) {
+    const index = myLibrary.findIndex(book => book.idNumber == event.target.id);
+    myLibrary[index].status = 'Not started';
+    const textToUpdate = event.target.previousElementSibling;
+    textToUpdate.innerHTML = `<span class="strong white">Status:</span> Not started<p class="strong white padtop">Change to:</p>`;
+    const nextButton = event.target.nextElementSibling;
+    const deleteBtn = nextButton.nextElementSibling;
+    nextButton.remove();
+    event.target.remove();
+    deleteBtn.remove();
+
+    let parent = textToUpdate.parentElement;
+    let inProgBtn = document.createElement("button");
+    let finishedBtn = document.createElement("button");
+    let newDeleteBtn = document.createElement("button");
+
+    inProgBtn.classList.add("inProgBtn");
+    finishedBtn.classList.add("finishedBtn");
+    newDeleteBtn.classList.add("delete");
+
+    inProgBtn.id = myLibrary[index].idNumber;
+    finishedBtn.id = myLibrary[index].idNumber;
+    newDeleteBtn.id = myLibrary[index].idNumber;
+
+    newDeleteBtn.innerText = "Delete?";
+    finishedBtn.innerText = "Finished";
+    inProgBtn.innerText = "In Progress";
+
+    parent.appendChild(inProgBtn);
+    parent.appendChild(finishedBtn);
+    parent.appendChild(newDeleteBtn);
+
+    newDeleteBtn.addEventListener("click", (event) => deleteBtnListener(event))
+    inProgBtn.addEventListener("click", (event) => inProgListener(event));
+    finishedBtn.addEventListener("click", (event) => finishedListener(event));
+    updateStats();
+}
+
+function finishedListener(event) {
+    const index = myLibrary.findIndex(book => book.idNumber == event.target.id);
+    myLibrary[index].status = 'Finished';
+    const notTextToUpdate = event.target.previousElementSibling;
+    const textToUpdate = notTextToUpdate.previousElementSibling;
+    textToUpdate.innerHTML = `<span class="strong white">Status:</span> Finished<p class="strong white padtop">Change to:</p>`;
+    const nextButton = event.target.nextElementSibling;
+    const previous = event.target.previousElementSibling;
+    nextButton.remove();
+    event.target.remove();
+    previous.remove();
+
+    let parent = textToUpdate.parentElement;
+    let inProgBtn = document.createElement("button");
+    let notStartedBtn = document.createElement("button");
+    let newDeleteBtn = document.createElement("button");
+
+    inProgBtn.classList.add("inProgBtn");
+    notStartedBtn.classList.add("notStartedBtn");
+    newDeleteBtn.classList.add("delete");
+
+    inProgBtn.id = myLibrary[index].idNumber;
+    notStartedBtn.id = myLibrary[index].idNumber;
+    newDeleteBtn.id = myLibrary[index].idNumber;
+
+    newDeleteBtn.innerText = "Delete?";
+    notStartedBtn.innerText = "Not Started";
+    inProgBtn.innerText = "In Progress";
+
+    parent.appendChild(notStartedBtn);
+    parent.appendChild(inProgBtn);
+    parent.appendChild(newDeleteBtn);
+
+    newDeleteBtn.addEventListener("click", (event) => deleteBtnListener(event))
+    inProgBtn.addEventListener("click", (event) => inProgListener(event));
+    notStartedBtn.addEventListener("click", (event) => notStartedListener(event));
+    updateStats();
+}
+
+function inProgListener(event) {
+    const index = myLibrary.findIndex(book => book.idNumber == event.target.id);
+    myLibrary[index].status = 'Started';
+    const previousSibling = event.target.previousElementSibling;
+    const itemStaying = previousSibling.previousElementSibling;
+
+    if (previousSibling.tagName.toLowerCase() !== 'button') {
+        previousSibling.innerHTML = `<span class="strong white">Status:</span> Started<p class="strong white padtop">Change to:</p>`;
+        const nextButton = event.target.nextElementSibling;
+        const deleteBtn = nextButton.nextElementSibling;
+        deleteBtn.remove();
+        nextButton.remove();
+    } else {
+        const textToUpdate = previousSibling.previousElementSibling;
+        textToUpdate.innerHTML = `<span class="strong white">Status:</span> Started<p class="strong white padtop">Change to:</p>`;
+        const deleteBtn = event.target.nextElementSibling;
+        previousSibling.remove();
+        deleteBtn.remove();
+    }
+    
+    event.target.remove();
+
+    let parent = itemStaying.parentElement;
+    let finishedBtn = document.createElement("button");
+    let notStartedBtn = document.createElement("button");
+    let newDeleteBtn = document.createElement("button");
+
+    finishedBtn.classList.add("finishedBtn");
+    notStartedBtn.classList.add("notStartedBtn");
+    newDeleteBtn.classList.add("delete");
+
+    finishedBtn.id = myLibrary[index].idNumber;
+    notStartedBtn.id = myLibrary[index].idNumber;
+    newDeleteBtn.id = myLibrary[index].idNumber;
+
+    newDeleteBtn.innerText = "Delete?";
+    notStartedBtn.innerText = "Not Started";
+    finishedBtn.innerText = "Finished";
+
+    parent.appendChild(notStartedBtn);
+    parent.appendChild(finishedBtn);
+    parent.appendChild(newDeleteBtn);
+
+    newDeleteBtn.addEventListener("click", (event) => deleteBtnListener(event));
+    finishedBtn.addEventListener("click", (event) => finishedListener(event));
+    notStartedBtn.addEventListener("click", (event) => notStartedListener(event));
     updateStats();
 }
 
